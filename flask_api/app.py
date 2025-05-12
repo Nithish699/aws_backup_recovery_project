@@ -3,6 +3,15 @@ import boto3
 from botocore.exceptions import ClientError
 from io import BytesIO
 import os
+from dotenv import load_dotenv # Add this import
+
+# Load environment variables from a .env file
+load_dotenv()
+
+# Retrieve AWS credentials and region from environment variables
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_REGION = os.getenv('AWS_REGION')
 
 app = Flask(__name__)
 
@@ -10,9 +19,9 @@ app = Flask(__name__)
 # In a production environment, consider using IAM roles or environment variables for credentials
 s3 = boto3.client(
     's3',
-    aws_access_key_id='AKIA44Y6CDN4LUMQQMMC',  # Replace with your actual access key
-    aws_secret_access_key='zGsCy8zIODc35YqHsI5J0oOe12ydPb52zWxVtkid',  # Replace with your actual secret key
-    region_name='us-east-1'  # Replace with your bucket's region
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    region_name=AWS_REGION
 )
 
 @app.route('/upload/<bucket>/<path:s3_object_key>', methods=['POST'])
