@@ -16,10 +16,7 @@ AWS_REGION = os.getenv('AWS_REGION')
 if not all([AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION]):
     raise ValueError("AWS credentials or region not found in environment variables. Please check your .env file.")
 
-else :
-    print(f"AWS_ACCESS_KEY_ID: {AWS_ACCESS_KEY_ID}")
-    print(f"AWS_SECRET_ACCESS_KEY: {AWS_SECRET_ACCESS_KEY}")
-    print(f"AWS_REGION: {AWS_REGION}")
+
 
 app = Flask(__name__)
 
